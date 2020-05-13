@@ -16,6 +16,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 /* eslint-env mocha */
+/* eslint-disable prefer-arrow-callback */
+/* eslint-disable func-names */
 
 const { expect } = require('chai');
 const { parseString } = require('xml2js');
@@ -23,13 +25,13 @@ const { CommandCall, Connection } = require('../../lib/itoolkit');
 const { config, printConfig } = require('./config');
 
 
-describe('CommandCall Functional Tests', () => {
-  before(() => {
+describe('CommandCall Functional Tests', function () {
+  before(function () {
     printConfig();
   });
 
-  describe('CL command tests', () => {
-    it('calls CL command', (done) => {
+  describe('CL command tests', function () {
+    it('calls CL command', function (done) {
       const connection = new Connection(config);
       connection.add(new CommandCall({ command: 'RTVJOBA USRLIBL(?) SYSLIBL(?)', type: 'cl' }));
       connection.run((error, xmlOut) => {
@@ -43,8 +45,8 @@ describe('CommandCall Functional Tests', () => {
     });
   });
 
-  describe('SH command tests', () => {
-    it('calls PASE shell command', (done) => {
+  describe('SH command tests', function () {
+    it('calls PASE shell command', function (done) {
       const connection = new Connection(config);
       connection.add(new CommandCall({ command: 'system -i wrksyssts', type: 'sh' }));
       connection.run((error, xmlOut) => {
@@ -60,8 +62,8 @@ describe('CommandCall Functional Tests', () => {
     });
   });
 
-  describe('QSH command tests', () => {
-    it('calls QSH command', (done) => {
+  describe('QSH command tests', function () {
+    it('calls QSH command', function (done) {
       const connection = new Connection(config);
       connection.add(new CommandCall({ command: 'system wrksyssts', type: 'qsh' }));
       connection.run((error, xmlOut) => {

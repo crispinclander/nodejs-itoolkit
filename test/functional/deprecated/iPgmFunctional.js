@@ -17,6 +17,8 @@
 
 /* eslint-env mocha */
 /* eslint-disable new-cap */
+/* eslint-disable prefer-arrow-callback */
+/* eslint-disable func-names */
 
 const { expect } = require('chai');
 const { parseString } = require('xml2js');
@@ -43,13 +45,13 @@ if (config.transport === 'rest') {
   };
 }
 
-describe('iPgm Functional Tests', () => {
-  before(() => {
+describe('iPgm Functional Tests', function () {
+  before(function () {
     printConfig();
   });
 
-  describe('Test iPgm()', () => {
-    it('calls QWCRSVAL program checks if it ran successfully', (done) => {
+  describe('Test iPgm()', function () {
+    it('calls QWCRSVAL program checks if it ran successfully', function (done) {
       const connection = new iConn(database, username, password, restOptions);
 
       const program = new iPgm('QWCRSVAL', { lib: 'QSYS' });
@@ -81,8 +83,8 @@ describe('iPgm Functional Tests', () => {
   });
 
 
-  describe('Test iPgm()', () => {
-    it('calls QWCRSVAL program and returns arbitrarily named parameter', (done) => {
+  describe('Test iPgm()', function () {
+    it('calls QWCRSVAL program and returns arbitrarily named parameter', function (done) {
       const connection = new iConn(database, username, password, restOptions);
 
       const program = new iPgm('QWCRSVAL', { lib: 'QSYS' });
@@ -115,10 +117,10 @@ describe('iPgm Functional Tests', () => {
     });
   });
 
-  describe.skip('Test iPgm()', () => {
+  describe.skip('Test iPgm()', function () {
     // ZZSRV6 program requires XMLSERVICE built with tests
     // Skip for now, we need to add before hook to check if ZZSRV6 is available
-    it.skip('Should be successful with addReturn arbitrary attribute specified using', (done) => {
+    it.skip('Should be successful with addReturn arbitrary attribute specified using', function (done) {
       const connection = new iConn(database, username, password, restOptions);
 
       const program = new iPgm('ZZSRV6', { lib: 'XMLSERVICE', func: 'ZZVARY4' });

@@ -17,6 +17,8 @@
 
 /* eslint-env mocha */
 /* eslint-disable new-cap */
+/* eslint-disable prefer-arrow-callback */
+/* eslint-disable func-names */
 
 const { expect } = require('chai');
 const { iPgm } = require('../../../lib/itoolkit');
@@ -38,16 +40,16 @@ const errno = [
   ['', '1A'],
 ];
 
-describe('iPgm Class Unit Tests', () => {
-  describe('constructor', () => {
-    it('creates and returns an instance of iPgm with lib and function set', () => {
+describe('iPgm Class Unit Tests', function () {
+  describe('constructor', function () {
+    it('creates and returns an instance of iPgm with lib and function set', function () {
       const pgm = new iPgm('QTOCNETSTS');
       expect(pgm).to.be.instanceOf(iPgm);
     });
   });
 
-  describe('toXML', () => {
-    it('returns pgm XML', () => {
+  describe('toXML', function () {
+    it('returns pgm XML', function () {
       const pgm = new iPgm('QTOCNETSTS',
         {
           lib: 'QSYS',
@@ -61,8 +63,8 @@ describe('iPgm Class Unit Tests', () => {
     });
   });
 
-  describe('addParam', () => {
-    it('appends param to pgm xml', () => {
+  describe('addParam', function () {
+    it('appends param to pgm xml', function () {
       const pgm = new iPgm('QTOCNETSTS',
         {
           lib: 'QSYS',
@@ -133,7 +135,7 @@ describe('iPgm Class Unit Tests', () => {
       expect(pgm.toXML()).to.equal(expectedXML);
     });
 
-    it('regular <parm> contains by=\'val\'', () => {
+    it('regular <parm> contains by=\'val\'', function () {
       const pgm = new iPgm('MYPGM', { lib: 'MYLIB', func: 'MY_PROCEDURE' });
 
       pgm.addParam('', '1A', { by: 'val' });
@@ -143,7 +145,7 @@ describe('iPgm Class Unit Tests', () => {
       expect(lookAtXML).to.match(/<parm .*by='val'.*>/);
     });
 
-    it('data structure <parm> contains by=\'val\'', () => {
+    it('data structure <parm> contains by=\'val\'', function () {
       const pgm = new iPgm('MYPGM', { lib: 'MYLIB', func: 'MY_PROCEDURE' });
 
       const params = [
@@ -158,7 +160,7 @@ describe('iPgm Class Unit Tests', () => {
       expect(lookAtXML).to.match(/<parm .*by='val'.*>/);
     });
 
-    it('regular <parm> contains by=\'val\', with io=\'both\'', () => {
+    it('regular <parm> contains by=\'val\', with io=\'both\'', function () {
       const pgm = new iPgm('MYPGM', { lib: 'MYLIB', func: 'MY_PROCEDURE' });
 
       pgm.addParam('', '1A', { by: 'val', io: 'both' });
@@ -169,7 +171,7 @@ describe('iPgm Class Unit Tests', () => {
       expect(lookAtXML).to.match(/<parm .*io='both'.*>/);
     });
 
-    it('data structure <parm> contains by=\'val\', with io=\'both\'', () => {
+    it('data structure <parm> contains by=\'val\', with io=\'both\'', function () {
       const pgm = new iPgm('MYPGM', { lib: 'MYLIB', func: 'MY_PROCEDURE' });
 
       const params = [
@@ -187,8 +189,8 @@ describe('iPgm Class Unit Tests', () => {
   });
 
 
-  describe('addReturn', () => {
-    it('appends return to pgm xml', () => {
+  describe('addReturn', function () {
+    it('appends return to pgm xml', function () {
       const pgm = new iPgm('QTOCNETSTS',
         {
           lib: 'QSYS',

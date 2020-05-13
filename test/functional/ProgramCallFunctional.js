@@ -16,6 +16,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 /* eslint-env mocha */
+/* eslint-disable prefer-arrow-callback */
+/* eslint-disable func-names */
 
 const { expect } = require('chai');
 const { parseString } = require('xml2js');
@@ -23,13 +25,13 @@ const { ProgramCall, Connection } = require('../../lib/itoolkit');
 const { config, printConfig } = require('./config');
 
 
-describe('ProgramCall Functional Tests', () => {
-  before(() => {
+describe('ProgramCall Functional Tests', function () {
+  before(function () {
     printConfig();
   });
 
-  describe('Test ProgramCall()', () => {
-    it('calls QWCRSVAL program checks if it ran successfully', (done) => {
+  describe('Test ProgramCall()', function () {
+    it('calls QWCRSVAL program checks if it ran successfully', function (done) {
       const connection = new Connection(config);
 
       const program = new ProgramCall('QWCRSVAL', { lib: 'QSYS' });
@@ -84,8 +86,8 @@ describe('ProgramCall Functional Tests', () => {
   });
 
 
-  describe('Test ProgramCall()', () => {
-    it('calls QWCRSVAL program and returns arbitrarily named parameter', (done) => {
+  describe('Test ProgramCall()', function () {
+    it('calls QWCRSVAL program and returns arbitrarily named parameter', function (done) {
       const connection = new Connection(config);
 
       const program = new ProgramCall('QWCRSVAL', { lib: 'QSYS' });
@@ -140,10 +142,10 @@ describe('ProgramCall Functional Tests', () => {
     });
   });
 
-  describe.skip('Test ProgramCall()', () => {
+  describe.skip('Test ProgramCall()', function () {
     // ZZSRV6 program requires XMLSERVICE built with tests
     // Skip for now, we need to add before hook to check ZZSRV6 is available
-    it.skip('Should be successful with addReturn arbitrary attribute specified', (done) => {
+    it.skip('Should be successful with addReturn arbitrary attribute specified', function (done) {
       const connection = new Connection(config);
 
       const program = new ProgramCall('ZZSRV6', { lib: 'XMLSERVICE', func: 'ZZVARY4' });
